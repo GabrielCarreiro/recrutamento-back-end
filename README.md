@@ -44,9 +44,9 @@
  <strong> Passo 1 > </strong> <i> Você deve ter instalado no seu computador o <strong> Postregrs </strong>. <a href="https://www.postgresql.org/"> Clique aqui </a></i><br>
  <strong> Passo 2 > </strong> <i> Caso precise de ajuda siga este tutorial  <a href="https://www.youtube.com/watch?reload=9&v=FoqXi0wpX4c"> Clique aqui </a></i><br>
  <strong> Passo 3 > </strong> <i> Configure o banco de dados com o usuário *postregrs* e senha *123* ou altere o código para seu usuário e senha </i><br>
- <strong> Passo 4 /strong> <i> Navegue até o diretório do backend, abra um terminal, e excute o seguinte código *yarn sequelize db:create* </i><br>
- <strong> Passo 5 /strong> <i> Agora você deve executar o seguinte código *yarn sequelize db:migrate* </i><br>
- <strong> Passo 6 /strong> <i> Pronto, abra o pgAdmin com seu usuário e senha configurados </i><br>
+ <strong> Passo 4 > </strong> <i> Navegue até o diretório do backend, abra um terminal, e excute o seguinte código *yarn sequelize db:create* </i><br>
+ <strong> Passo 5 > </strong> <i> Agora você deve executar o seguinte código *yarn sequelize db:migrate* </i><br>
+ <strong> Passo 6 > </strong> <i> Pronto, abra o pgAdmin com seu usuário e senha configurados </i><br>
  
 ## 👨🏻‍💻 Tecnologias
 
