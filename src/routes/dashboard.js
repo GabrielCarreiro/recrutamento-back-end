@@ -3,6 +3,7 @@ const authenticated = require('../middlewares/authenticated');
 const fetch = require("node-fetch");
 require("dotenv").config();
 
+/* Essa rota realiza uma requisição em outra API e retorna os dados obtidos */
 router.post('/', authenticated , async (req, res) => {
     try {
         const response = await fetch('https://recrutamento.alterdata.cloud/listaServidor',

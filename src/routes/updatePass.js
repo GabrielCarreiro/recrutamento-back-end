@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const pool = require('../db');
 const jwt = require("jsonwebtoken");
 
+/* Rotas de recuperação de senha, realizo uma validação no campo de senha e chave */
 router.post('/',
     [body('password').notEmpty().isLength({min: 6}),
      body('token').notEmpty()],
@@ -16,13 +17,17 @@ router.post('/',
     
             const { password, token } = req.body;
 
+             /* Realiza a verificação do token enviado com o salvo na variável de ambiente */
             jwt.verify(token, process.env.JWT);
 
+              /* Realizo a decodificação do token para obter o email */
             let email = jwt.decode(token);
      
+            /* Uso o bcrypt para criptografar a senha do usuário */
             const saltRounds = 10;
             const newPassword = bcrypt.hashSync(password, saltRounds);
     
+            /* Faço a atualização da senha do usuário de acordo o email */
             await pool.query('UPDATE users SET password = $2 WHERE email = $1 RETURNING *',
             [email.id, newPassword]);
             

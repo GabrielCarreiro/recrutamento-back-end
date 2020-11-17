@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const authenticated = require('../middlewares/authenticated');
 
+/* Rota que verifica se o token está válido, caso esteja tudo certo retorna true para o frontend */
 router.get('/', authenticated, (req, res) => {
     try {
         res.json(true);

@@ -5,8 +5,7 @@ const connection = new Sequelize(dbConfig);
 
 connection.authenticate().then(function(){
     const sequelize = require('sequelize');
-    console.log('Foi')
 }).catch(function(erro){
-    console.log('Deu erro', erro)
-})
+    console.log('Error', erro)
+});
 

@@ -9,8 +9,7 @@ require("dotenv").config();
 const user = process.env.EMAIL;
 const pass = process.env.PASS;
 
-/* Rota de cadastro da aplicação, faço uma verificação para o campo de email se está vazio e se é válido, 
-e outra verificação para verificar se a senha não está vazia e tem mais que 6 caracteres. */
+/* Rota de envio de email de cadastro, faço uma verificação para o campo de email se está vazio e se é válido */
 router.post('/', [body('email').notEmpty().isEmail()],
     async (req, res) => {
         try {
@@ -23,18 +22,21 @@ router.post('/', [body('email').notEmpty().isEmail()],
             const filterUser = await pool.query(`SELECT * FROM users WHERE email = $1`, [email]);
             if(filterUser.rows.length > 0) return res.status(401).json('Usuário já cadastrado');
            
+            /* Faço um token contendo o email do usuário*/
             const token = jsonWebToken(email);
 
+            /* Configuração do nodemailer, com usuário e senha do email */
             const transporter = nodemailer.createTransport( smtpTransport({
                 service: 'Gmail',
                 auth: {user, pass }
-            }))
+            }));
         
+            /* Envio de email para o usuário, enviando a chave para finalizar o cadastro */
             transporter.sendMail({
                 from: user,
                 to: email,
                 subject: "Bem vindo a nuvem web !",
-                text: ` Para finalizar seu cadastro acesse o link https://localhost:3000/send/key 
+                text: ` Para finalizar seu cadastro acesse o link http://localhost:3000/send/pass
 e digite o codigo: ${token}`
             }).then(info =>{
                 res.status(200).json(info);
